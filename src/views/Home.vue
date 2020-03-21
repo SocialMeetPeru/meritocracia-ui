@@ -1,18 +1,22 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <Login />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Login from '@/components/auth/Login.vue'
+import ApiService from '../services/api';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Login
+  },
+  created() {
+    ApiService.get('/posts')
+      .then((response) => console.info('response', response));
   }
 }
 </script>
