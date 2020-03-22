@@ -55,6 +55,16 @@ const routes = [
         path: 'signup',
         name: 'ambassador-signup',
         component: () => import('@/views/ambassador/SignUp.vue')
+      },
+      {
+        path: 'rules',
+        name: 'ambassador-rules',
+        component: () => import('@/views/ambassador/Rules.vue')
+      },
+      {
+        path: 'refer-members',
+        name: 'ambassador-refer-members',
+        component: () => import('@/views/ambassador/ReferMembers.vue')
       }
     ]
   }
