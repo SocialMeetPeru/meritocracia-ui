@@ -1,20 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Login from '../components/auth/Login.vue'
-
-// Trueque
-import TruequeNew from '../views/trueque/TruequeNew'
-import TruequeRegister from '../views/trueque/TruequeRegister'
-
-// Ambasador
-import AmbasadorUno from '../views/ambassador/AmbassadorUno'
-import AmbasadorDos from '../views/ambassador/AmbassadorDos'
-import AmbasadorTres from '../views/ambassador/AmbassadorTres'
-import AmbasadorCuatro from '../views/ambassador/AmbassadorCuatro'
-
-// Anonymous
-import AnonymousRegister from '../views/anonymous/AnonymousRegister'
 
 Vue.use(VueRouter)
 
@@ -27,50 +13,50 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: () => import('@/views/auth/LoginPage.vue')
   },
   {
-    path: '/trueque_new',
-    name: 'TruequeNew',
-    component: TruequeNew
+    path: '/regular',
+    component: () => import('@/views/regular-user/Index.vue'),
+    children: [
+      {
+        path: '',
+        name: 'bartering',
+        component: () => import('@/views/regular-user/Bartering.vue')
+      },
+      {
+        path: 'signup',
+        name: 'regular-signup',
+        component: () => import('@/views/regular-user/SignUp.vue')
+      }
+    ]
   },
   {
-    path: '/trueque_register',
-    name: 'TruequeRegister',
-    component: TruequeRegister
+    path: '/anonymous',
+    component: () => import('@/views/anonymous/Index.vue'),
+    children: [
+      {
+        path: '',
+        name: 'anonymous-welcome',
+        component: () => import('@/views/anonymous/Welcome.vue')
+      }
+    ]
   },
   {
-    path: '/ambassador_uno',
-    name: 'AmbassadorUno',
-    component: AmbasadorUno
-  },
-  {
-    path: '/ambassador_dos',
-    name: 'AmbassadorDos',
-    component: AmbasadorDos
-  },
-  {
-    path: '/ambassador_tres',
-    name: 'AmbassadorTres',
-    component: AmbasadorTres
-  },
-  {
-    path: '/ambassador_cuatro',
-    name: 'AmbassadorCuatro',
-    component: AmbasadorCuatro
-  },
-  {
-    path: '/anonymous_register',
-    name:'AnonymousRegister',
-    component: AnonymousRegister
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/ambassador',
+    component: () => import('@/views/anonymous/Index.vue'),
+    children: [
+      {
+        path: '',
+        name: 'ambassador-welcome',
+        component: () => import('@/views/ambassador/Welcome.vue')
+      },
+      {
+        path: 'signup',
+        name: 'ambassador-signup',
+        component: () => import('@/views/ambassador/SignUp.vue')
+      }
+    ]
   }
 ]
 

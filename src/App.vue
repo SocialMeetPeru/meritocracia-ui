@@ -1,14 +1,13 @@
 <template>
-  <div id="app">
+  <div>
     <Header />
     <div class="container">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-require('bootstrap') 
 
 import Header from '@/components/layouts/Header.vue'
  

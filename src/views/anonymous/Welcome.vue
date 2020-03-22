@@ -48,13 +48,13 @@
       GoToPage(option) {
         switch (option) {
           case 'trueque':
-            this.$router.push('trueque_new');
+            this.$router.push('/regular/v');
             break;
           case 'ambassador':
             this.$router.push('ambassador_new');
             break;
           case 'anonymous':
-            this.$router.push('anonymous_register');
+            this.$router.push('regular-signup');
             break;
           default:
             break;
