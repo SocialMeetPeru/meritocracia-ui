@@ -1,9 +1,20 @@
 <template>
-  <div class="container">
-    <div id="nav">
-      <router-link to="/"><i class="fa fa-users"></i> Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div id="app">
+    <Header />
+    <div class="container">
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
+
+<script>
+require('bootstrap') 
+
+import Header from '@/components/layouts/Header.vue'
+ 
+export default {
+  components: {
+    Header
+  }
+}
+</script>
