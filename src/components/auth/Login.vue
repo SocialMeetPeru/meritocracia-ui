@@ -86,18 +86,18 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="d-inline-flex pt-1" style="width: 100%">
+              <div class="pt-1 d-flex flex-sm-row flex-column align-items-center">
                 <!-- Button Trueque -->
-                <div style="width: 50%; box-sizing: content-box;">
-                  <div class="pr-1">
+                <div class="w-50">
+                  <div class="mr-sm-2 mb-2">
                     <button class="btn btn-primary btn-block btn-lg" @click="UnirteOpction('trueque')">
                       <i class="fa fa-user"></i> Trueque
                     </button>
                   </div>
                 </div>
                 <!-- Button Ambassador-->
-                <div style="width: 50%; box-sizing: content-box;">
-                  <div class="pl-1">
+                <div class="w-50">
+                  <div class="mb-2">
                     <button class="btn btn-warning btn-block btn-lg" @click="UnirteOpction('ambassador')">
                       <i class="fa fa-users"></i> Ambassador
                     </button>

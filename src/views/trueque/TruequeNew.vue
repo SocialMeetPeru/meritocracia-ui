@@ -2,7 +2,7 @@
   <div>
 
     <!-- Titulo Registro Usuario Normal -->
-    <h1 class="display-4 pt-4">Trueque Registro</h1>
+    <h3>Trueque Registro</h3>
 
     <!-- Wizard Form-->
 <!--    <div class="list-group list-group-horizontal-lg pt-4">-->
@@ -39,10 +39,10 @@
 
     <!-- Formulario Recomienda -->
     <div class="row pt-4 pb-4 d-flex justify-content-center">
-      <div class="col-9">
+      <div class="col-sm-9">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">1. Recomienda </h2>
+            <h4 class="card-title">1. Recomienda </h4>
             <p class="card-text">
               Para poder ingresar a nuestra red de contactos necesitamos que nos refieras a por lo menos
               1 persona extraordinaria que conoces, Si tu crees que reunes las condiciones podras
@@ -50,47 +50,64 @@
             </p>
 
             <!-- Formulario-->
-            <div class="form-row pt-3">
-              <div class="col">
+            <div class="form-row d-flex flex-column flex-sm-row">
+              <div class="col mb-3">
                 <label>Nombres</label>
-                <input type="text" class="form-control form-control-lg" placeholder="Abraham Moises">
+                <input type="text" class="form-control" placeholder="Abraham Moises">
               </div>
-              <div class="col">
+              <div class="col mb-3">
                 <label>Apellidos</label>
-                <input type="text" class="form-control form-control-lg" placeholder="Linares Oscco">
+                <input type="text" class="form-control" placeholder="Linares Oscco">
               </div>
             </div>
 
-            <div class="form-row pt-3">
-              <div class="col">
+            <div class="form-row d-flex flex-column flex-sm-row">
+              <div class="col mb-3">
                 <label>Email</label>
-                <input type="text" class="form-control form-control-lg" placeholder="elnaufrago2009@gmail.com">
+                <input type="text" class="form-control" placeholder="elnaufrago2009@gmail.com">
               </div>
-              <div class="col">
+              <div class="col mb-3">
                 <label>Telefono</label>
-                <input type="text" class="form-control form-control-lg" placeholder="952631806">
+                <input type="text" class="form-control" placeholder="952631806">
               </div>
             </div>
 
-            <div class="form-row pt-4">
-              <div class="col">
+            <div class="form-row d-flex flex-column flex-sm-row">
+              <div class="col mb-3">
                 <label>Area de Expertis</label>
                 <multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
               </div>
             </div>
 
-            <div class="form-row pt-4">
-              <div class="col-8">
+            <div class="form-row d-flex flex-column flex-sm-row">
+              <div class="col-sm-8">
                 <label>Link de Red Social del Referido:</label>
-                <input type="text" class="form-control form-control-lg" placeholder="https://www.facebook.com/AbrahamMoisesLinares">
+                <input type="text" class="form-control" placeholder="https://www.facebook.com/AbrahamMoisesLinares">
               </div>
             </div>
 
             <button class="btn btn-primary mt-4" @click="NextStep" :disabled="disabled_in">
-              <i v-if="disabled_in==false" class="fa fa-share-alt"></i>
+              <i v-if="disabled_in==false" class="fa fa-share"></i>
+              <i v-if="disabled_in == 'ok'" class="fa fa-check"></i>
               <span v-if="disabled_in==true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Recomendar
             </button>
+
+
+
+            <div class="alert alert-primary mt-3" role="alert" v-if="disabled_in=='ok'">
+              Muchas Gracias Recuerda que tienes que entar seguro que esa persona te
+              conoce, que se una a la red y que permanezca con ella hasta el momento que
+              hagamos los conteos de tus puntos.
+
+              <div class="mt-3 d-flex justify-content-between flex-wrap">
+                <button class="btn btn-warning mb-3 mr-2">
+                  <i class="fa fa-check-circle"></i> Seguir Recomendando</button>
+
+                <button class="btn btn-success mb-3">
+                  <i class="fa fa-check-circle"></i> Ingresar a tu Cuenta</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

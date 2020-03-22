@@ -2,20 +2,20 @@
   <div>
 
     <!-- Titulo Registro Usuario Normal -->
-    <h1 class="display-4 pt-4">Ambassador Registro</h1>
+    <h3>Ambassador Registro</h3>
 
     <div class="row pt-4 pb-4 d-flex justify-content-center">
       <div class="col-9">
         <div class="card">
           <div class="card-body">
-            <h2 class="card-title">3. Ambassador Socio</h2>
-            <p class="lead">
+            <h4 class="card-title">3. Ambassador Socio</h4>
+            <p>
               Solo puedes recomendar a gente valiosa que conoces y te conocen bien,
               puedes perder puntos si es que nos haces una mala referencia y tu score
               como ambassador puede llegar a "Cero" cambiando tu condicion a usuario
               Regular.
             </p>
-            <p class="card-text pl-5">
+            <p class="card-text pl-3">
               Estas son las reglas:
             </p>
             <ul>
@@ -32,7 +32,7 @@
               los 50 puntos, salvo que el referido seniale a otro ambassador</li>
             </ul>
             <p class="text-center pt-4">
-              <button class="btn btn-lg btn-primary mr-2" @click="Aplicar('si')" :disabled="disabled_in">
+              <button class="btn btn-primary mr-2" @click="Aplicar('si')" :disabled="disabled_in">
                 <i v-if="disabled_in==false" class="fa fa-thumbs-up"></i>
                 <span v-if="disabled_in==true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 Acepto
