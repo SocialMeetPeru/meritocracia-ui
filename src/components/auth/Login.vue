@@ -11,14 +11,14 @@
           <div class="m-auto w-75">
             <input type="email"
                     class="form-control mb-2"
-                    v-model="login.email"
+                    v-model="user.email"
                     placeholder="email">
           </div>
 
           <!-- Password -->
           <div class="m-auto w-75">
             <input type="password"
-                    v-model="login.password"
+                    v-model="user.password"
                     class="form-control mb-2"
                     placeholder="password">
           </div>
@@ -26,10 +26,10 @@
           <!-- Ingresar y Unirme -->
           <div class="m-auto w-75">
             <button
-                  @click="Login"
+                  @click="login"
                   class="btn btn-secondary btn-block mb-2">
-                <i class="fa fa-user-alt" v-if="logged_in=='no'"></i>
-                <i class="fa fa-spinner fa-spin" v-if="logged_in=='cargando'"></i>
+                <i class="fa fa-user-alt" v-if="!isLoading"></i>
+                <i class="fa fa-spinner fa-spin" v-if="isLoading"></i>
                 Login
             </button>
           </div>
@@ -89,7 +89,7 @@
                 <!-- Button Trueque -->
                 <div style="width: 50%; box-sizing: content-box;">
                   <div class="pr-1">
-                    <button class="btn btn-primary btn-block btn-lg" @click="UnirteOpction('trueque')">
+                    <button class="btn btn-primary btn-block btn-lg" @click="join('trueque')">
                       <i class="fa fa-user"></i> Trueque
                     </button>
                   </div>
@@ -97,7 +97,7 @@
                 <!-- Button Ambassador-->
                 <div style="width: 50%; box-sizing: content-box;">
                   <div class="pl-1">
-                    <button class="btn btn-warning btn-block btn-lg" @click="UnirteOpction('ambassador')">
+                    <button class="btn btn-warning btn-block btn-lg" @click="join('ambassador')">
                       <i class="fa fa-users"></i> Ambassador
                     </button>
                   </div>
@@ -116,44 +116,47 @@
 </template>
 
 <script>
-  const axios = require('axios');
   import $ from 'jquery'
+  import authService from '@/services/auth'
+
   export default {
     name: 'Login',
     data() {
       return {
-        logged_in: 'no',
-        login: {
+        isLoading: false,
+        user: {
           email: '',
           password: ''
         }
       }
     },
-    methods: {
-      Login() {
-        this.logged_in = 'cargando';
-        axios.post('http://localhost:8082/src/Auth.php?f=login', {login: this.login})
-          .then(res => {
-            if (res.data.logged_in == 'si') {
-              this.logged_in = 'yes';
-              this.$router.push('Dashboard');
-            }
-            console.log(res.data.logged_in)
-          });
-      },
-      UnirteOpction(option) {
-        if (option == 'trueque'){
-          /* Cierra el Modal Unirte */
-          $('#exampleModal').modal('hide');
-          this.$router.push('trueque_new');
-        }else if (option == 'ambassador'){
-          $('#exampleModal').modal('hide');
-          this.$router.push('ambassador_uno');
-        }
+    created() {
+      if (authService.isLoggedIn()) {
+        this.$router.push('/');
       }
     },
-    mounted() {
-      // this.Login();
+    methods: {
+      login() {
+        this.isLoading = true;
+
+        authService.login(this.user.email, this.user.password)
+          .then(() => {
+            this.isLoading = false;
+            this.$router.push('/');
+          }).catch(() => {
+            this.isLoading = false;
+            // TODO: display error
+          })
+      },
+      join(option) {
+        $('#exampleModal').modal('hide');
+
+        if (option == 'trueque'){
+          this.$router.push('/regular');
+        } else if (option == 'ambassador'){
+          this.$router.push('/ambassador');
+        }
+      }
     }
   }
 
