@@ -63,13 +63,12 @@
 
           <!-- Ingresar Anonimamente -->
           <div class="pt-2 w-75 m-auto">
-            <button class="btn btn-danger btn-block" @click="GoToPage('anonymous')">Login Anonymously</button>
+            <router-link to="/anonymous" class="btn btn-danger btn-block">Login Anonymously</router-link>
           </div>
 
           <!-- Ingresar Ambassador -->
-          
           <div class="pt-2 w-75 m-auto">
-            <button class="btn btn-success btn-block">Refered by Ambassador</button>
+            <router-link to="/ambassador" class="btn btn-success btn-block">Refered by Ambassador</router-link>
           </div>
         </div><!-- end card-body -->
       </div><!-- end card -->
@@ -117,7 +116,6 @@
 </template>
 
 <script>
-console.log("form")
   const axios = require('axios');
   import $ from 'jquery'
   export default {
@@ -151,16 +149,6 @@ console.log("form")
         }else if (option == 'ambassador'){
           $('#exampleModal').modal('hide');
           this.$router.push('ambassador_uno');
-        }
-      },
-      GoToPage(option) {
-        switch (option) {
-          case "anonymous":
-            this.$router.push('anonymous_register');
-            break;
-        
-          default:
-            break;
         }
       }
     },

@@ -22,14 +22,10 @@
               verificado <i class="fa fa-check-circle"></i>
             </p>
             <div class="d-flex justify-content-sm-between justify-content-center flex-wrap pt-4">
-              <button class="btn btn-primary mr-2 mb-2" @click="Aplicar('si')" :disabled="disabled_in">
-                <i v-if="disabled_in==false" class="fa fa-thumbs-up"></i>
-                <span v-if="disabled_in==true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Quiero Aplicar
-              </button>
-              <button class="btn btn-warning mb-2" @click="Aplicar('no')">
+              <router-link to="/ambassador/signup" class="btn btn-primary mr-2 mb-2">Quiero Aplicar</router-link>
+              <router-link to="/regular/signup" class="btn btn-warning mb-2">
                 <i class="fa fa-thumbs-down"></i> No estoy Interesado
-              </button>
+              </router-link>
             </div>
           </div>
         </div>
@@ -38,27 +34,3 @@
 
   </div>
 </template>
-
-<script>
-  export default {
-    data(){
-      return{
-        disabled_in: false,
-      }
-    },
-    methods: {
-      Aplicar(opcion){
-        this.disabled_in = true;
-
-        setTimeout(() => {
-          if ( opcion == 'si'){
-            this.$router.push('ambassador_dos')
-          }else if (opcion == 'no'){
-            this.$router.push('trueque_new')
-          }
-        }, 1500);
-
-      }
-    }
-  }
-</script>

@@ -5,7 +5,7 @@
     <h3>Ambassador Registro</h3>
 
     <div class="row pt-4 pb-4 d-flex justify-content-center">
-      <div class="col-9">
+      <div class="col-sm-9">
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">3. Ambassador Socio</h4>
@@ -32,11 +32,7 @@
               los 50 puntos, salvo que el referido seniale a otro ambassador</li>
             </ul>
             <p class="text-center pt-4">
-              <button class="btn btn-primary mr-2" @click="Aplicar('si')" :disabled="disabled_in">
-                <i v-if="disabled_in==false" class="fa fa-thumbs-up"></i>
-                <span v-if="disabled_in==true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Acepto
-              </button>
+              <router-link to="/ambassador/refer-members" class="btn btn-lg btn-primary">Acepto</router-link>
             </p>
           </div>
         </div>
@@ -45,25 +41,3 @@
 
   </div>
 </template>
-
-<script>
-  export default {
-    data(){
-      return{
-        disabled_in: false,
-      }
-    },
-    methods: {
-      Aplicar(opcion){
-        this.disabled_in = true;
-
-        setTimeout(() => {
-          if ( opcion == 'si'){
-            this.$router.push('ambassador_cuatro')
-          }
-        }, 1500);
-
-      }
-    }
-  }
-</script>
