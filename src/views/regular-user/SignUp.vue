@@ -117,7 +117,7 @@
       NextStep() {
         this.disabled_in = true;
         setTimeout(() => {
-          this.$router.push('trueque_register')
+          this.$router.push('/ranking')
         }, 1500);
       }
     }

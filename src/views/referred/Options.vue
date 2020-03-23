@@ -2,20 +2,11 @@
   <!-- Ususario Anónimo -->
   <div class="container mb-4">
     
-    <h3 class="display-5 pt-4">Bienvenido a nuestra comunidad</h3>
-    <h6 class="display-6">
-      Solo podrás votar y tu voto anónimo vale 1/10 de lo que valdría si te unes a nuestra red.
-      <ul class="pt-2 pb-2">
-        <li>
-          No podrás ver ningún otro dato de las personas estraordinarias de nuestra red.
-          Solo a los miembros regulares y los que están en votación.
-        </li>
-        <li>
-          Tampoco podrás acumular puntos, ni convertirte en Ambassador Socio, perdiendo la opción de ganar 
-          muchos beneficios de nuestros auspiciadores y que tu voto valga 50 veces más de lo que valdría como usuario 
-          anónimo.
-        </li>
-      </ul>
+    <h3 class="display-5 pt-4">Referido por Ambassador</h3>
+
+    <h6 class="display-6 mb-2">
+      Muchas gracias, te enviaremos un email de confirmación. Por lo pronto puedes realizar
+      las siguientes acciones.
     </h6>
     <!-- Anónimo option -->
     <div class="row w-75 m-auto pt-3">

@@ -67,7 +67,28 @@ const routes = [
         component: () => import('@/views/ambassador/ReferMembers.vue')
       }
     ]
-  }
+  },
+  {
+    path: '/referred',
+    component: () => import('@/views/referred/Index.vue'),
+    children: [
+      {
+        path: '',
+        name: 'referred-welcome',
+        component: () => import('@/views/referred/Welcome.vue')
+      },
+      {
+        path: 'options',
+        name: 'options',
+        component: () => import('@/views/referred/Options.vue')
+      }
+    ]
+  },
+  {
+    path: '/ranking',
+    name: 'Ranking',
+    component: () => import('@/views/ranking/Ranking.vue')
+  },
 ]
 
 const router = new VueRouter({

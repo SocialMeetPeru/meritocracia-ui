@@ -68,7 +68,7 @@
 
           <!-- Ingresar Ambassador -->
           <div class="pt-2 w-75 m-auto">
-            <router-link to="/ambassador" class="btn btn-success btn-block">Refered by Ambassador</router-link>
+            <router-link to="/referred" class="btn btn-success btn-block">Refered by Ambassador</router-link>
           </div>
         </div><!-- end card-body -->
       </div><!-- end card -->
@@ -145,10 +145,10 @@
         if (option == 'trueque'){
           /* Cierra el Modal Unirte */
           $('#exampleModal').modal('hide');
-          this.$router.push('trueque_new');
+          this.$router.push('regular');
         }else if (option == 'ambassador'){
           $('#exampleModal').modal('hide');
-          this.$router.push('ambassador_uno');
+          this.$router.push('ambassador');
         }
       }
     },

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Titulo Registro Usuario Normal -->
-    <h3>Trueque Registro</h3>
+    <h3>Ambassador Socio</h3>
 
     <!-- Formulario Recomienda -->
     <div class="row pt-4 pb-4 d-flex justify-content-center">

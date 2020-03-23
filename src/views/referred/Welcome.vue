@@ -1,23 +1,20 @@
 <template>
   <div>
 
-    <!-- Titulo Registro Usuario Normal -->
-    <h3>Registro Ambassador</h3>
+    <!-- Referido por Ambassador -->
 
     <!-- Formulario Recomienda -->
     <div class="row pt-4 pb-4 d-flex justify-content-center">
       <div class="col-sm-9">
         <div class="card">
           <div class="card-body">
-            <h4>4. Recomienda una persona</h4>
-            <p>
-              Para poder ingresar a nuestra red de contactos necesitamos que nos refieras a por lo menos
-              1 persona extraordinaria que conoces, Si tu crees que reunes las condiciones podras
-              referirte a ti mismo.
-            </p>
+            <h4>Referido por Ambassador</h4>
+            <h6 class="mb-3">
+              Hola, si fuiste referido por un <b>Ambassador</b>, completa tu datos.
+            </h6>
 
             <!-- Formulario-->
-            <div class="form-row d-flex flex-column flex-sm-row">
+            <div class="form-row d-flex flex-column flex-sm-row mt-2">
               <div class="col mb-3">
                 <label>Nombres</label>
                 <input type="text" class="form-control" placeholder="Abraham Moises">
@@ -48,30 +45,15 @@
 
             <div class="form-row d-flex flex-column flex-sm-row">
               <div class="col-sm-8">
-                <label>Link de Red Social del Referido:</label>
+                <label>Link de Red Social</label>
                 <input type="text" class="form-control" placeholder="https://www.facebook.com/AbrahamMoisesLinares">
               </div>
             </div>
 
             <button class="btn btn-primary mt-4" @click="NextStep" :disabled="disabled_in">
-              <i v-if="disabled_in==false" class="fa fa-share"></i>
-              <i v-if="disabled_in == 'ok'" class="fa fa-check"></i>
               <span v-if="disabled_in==true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Recomendar
+              Enviar
             </button>
-
-
-
-            <div class="alert alert-primary mt-3" role="alert" v-if="disabled_in=='ok'">
-              Muchas Gracias Recuerda que tienes que entar seguro que esa persona te
-              conoce, que se una a la red y que permanezca con ella hasta el momento que
-              hagamos los conteos de tus puntos.
-
-              <div class="mt-3 d-flex justify-content-between flex-wrap">
-                <router-link to="/ambassador/refer-members" class="btn btn-warning mb-3 mr-2"><i class="fa fa-check-circle"></i> Seguir Recomendando</router-link>
-                <router-link to="/ranking" class="btn btn-success mb-3"><i class="fa fa-check-circle"></i> Ingresar a tu Cuenta</router-link>
-              </div>
-            </div>
 
           </div>
         </div>
@@ -80,6 +62,7 @@
 
   </div>
 </template>
+
 
 <script>
   import Multiselect from 'vue-multiselect'
@@ -116,7 +99,7 @@
         this.disabled_in = true;
         setTimeout(() => {
           this.disabled_in = 'ok';
-          // this.$router.push('trueque_register')
+          this.$router.push('referred/options')
         }, 1500);
       }
     }

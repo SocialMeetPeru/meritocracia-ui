@@ -149,7 +149,7 @@
       },
       NextStep(){
         this.disabled_in = true;
-        setTimeout(() => { this.$router.push('trueque_register') }, 1500);
+        setTimeout(() => { this.$router.push('regular/signup') }, 1500);
       }
     }
   }
