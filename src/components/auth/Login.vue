@@ -7,6 +7,12 @@
           <h6 class="text-center mb-3">
             Contacta con Personas extraordinarias
           </h6>
+
+          <!-- Errores -->
+          <div v-if="errors.estado=='no'" class="alert alert-danger mt-3" role="alert">
+            {{errors.message}}
+          </div> <!-- End Errores -->
+
           <!-- Email -->
           <div class="m-auto w-75">
             <input type="email"
@@ -25,17 +31,18 @@
 
           <!-- Ingresar y Unirme -->
           <div class="m-auto w-75">
-            <button
-                  @click="Login"
-                  class="btn btn-secondary btn-block mb-2">
-                <i class="fa fa-user-alt" v-if="logged_in=='no'"></i>
-                <i class="fa fa-spinner fa-spin" v-if="logged_in=='cargando'"></i>
+            <button @click="Login" class="btn btn-secondary btn-block mb-2" :disabled="isLoading">
+              <i v-if="!isLoading" class="fa fa-user-alt"></i>
+              <span v-if="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+
+<!--                <i class="fa fa-user-alt" v-if="logged_in=='no'"></i>-->
+<!--                <i class="fa fa-spinner fa-spin" v-if="logged_in=='cargando'"></i>-->
                 Login
             </button>
           </div>
           <div class="m-auto w-75">
             <button class="btn btn-primary btn-block mb-2"
-                    data-toggle="modal" 
+                    data-toggle="modal"
                     data-target="#exampleModal">
                 Register
             </button>
@@ -122,6 +129,11 @@
     name: 'Login',
     data() {
       return {
+        isLoading: false,
+        errors: {
+          estado: '',
+          message: ''
+        },
         logged_in: 'no',
         login: {
           email: '',
@@ -132,14 +144,38 @@
     methods: {
       Login() {
         this.logged_in = 'cargando';
-        axios.post('http://localhost:8082/src/Auth.php?f=login', {login: this.login})
+
+        // Estado inicial de los errores
+        this.errors.estado = '';
+        this.errors.message = '';
+
+        this.isLoading = true;
+
+        setTimeout(() => {
+        axios.post('http://34.229.211.102/src/auth/Auth.php?f=login', {login: this.login})
           .then(res => {
-            if (res.data.logged_in == 'si') {
-              this.logged_in = 'yes';
-              this.$router.push('Dashboard');
-            }
-            console.log(res.data.logged_in)
+
+
+              // Si es correcto
+              if (res.data.auth == 'ok') {
+                this.logged_in = 'yes';
+                this.$router.push('ranking');
+              }
+
+              // Si no es correcto
+              else if (res.data.auth == 'no'){
+                this.errors.estado = 'no';
+                this.errors.message = res.data.error;
+              }
+
+
+            this.isLoading = false;
+
+
+
+            console.log(res.data)
           });
+        }, 3000);
       },
       UnirteOpction(option) {
         if (option == 'trueque'){

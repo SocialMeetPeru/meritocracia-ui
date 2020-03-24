@@ -13,7 +13,10 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/auth/LoginPage.vue')
+    component: () => import('@/views/auth/LoginPage.vue'),
+    meta: {
+      requiresVisitor: true,
+    }
   },
   {
     path: '/regular',
@@ -87,7 +90,10 @@ const routes = [
   {
     path: '/ranking',
     name: 'Ranking',
-    component: () => import('@/views/ranking/Ranking.vue')
+    component: () => import('@/views/ranking/Ranking.vue'),
+    meta: {
+      requiresAuth: true,
+    }
   },
 ]
 

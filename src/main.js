@@ -8,6 +8,32 @@ import './styles/theme.scss'
 import ApiService from './services/api'
 
 Vue.config.productionTip = false
+
+// Router Hace Match con las rutas que requieren auth o visor
+// Auth : rutas que nencesitan login
+// Visitor : visitante que necesita ver sin autenticacion
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters.loggedIn) {
+      next({
+        name: 'login',
+      })
+    } else {
+      next()
+    }
+  } else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    if (store.getters.loggedIn) {
+      next({
+        name: 'todo',
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
 ApiService.init()
 
 Vue.use(Vuelidate)
