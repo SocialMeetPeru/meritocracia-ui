@@ -6,7 +6,7 @@
         <div class="new-members">
           <h5>Nuevos Miembros</h5>
           <div>
-            <div class="cards" 
+            <div class="cards"
                  style="display: grid; grid-gap: 10px; justify-content: center; grid-template-columns: repeat(auto-fit, minmax(48%,1fr));"
             >
               <div class="card mb-2">

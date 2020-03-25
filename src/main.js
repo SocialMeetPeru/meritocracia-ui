@@ -5,7 +5,7 @@ import store from './store'
 import Vuelidate from 'vuelidate'
 require('bootstrap')
 import './styles/theme.scss'
-import ApiService from './services/api'
+// import ApiService from './services/api'
 
 Vue.config.productionTip = false
 
@@ -22,19 +22,22 @@ router.beforeEach((to, from, next) => {
       next()
     }
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
-    if (store.getters.loggedIn) {
+
+    // Si no hay token
+    if (store.getters.loggedIn == false) {
+      // console.log(store.getters.loggedIn)
       next({
-        name: 'todo',
+        // name: 'Login',
       })
     } else {
-      next()
+      next('ranking')
     }
   } else {
     next()
   }
 })
 
-ApiService.init()
+// ApiService.init()
 
 Vue.use(Vuelidate)
 

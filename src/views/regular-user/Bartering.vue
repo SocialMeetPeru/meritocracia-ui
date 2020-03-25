@@ -4,39 +4,6 @@
     <!-- Titulo Registro Usuario Normal -->
     <h3>Trueque Registro</h3>
 
-    <!-- Wizard Form-->
-<!--    <div class="list-group list-group-horizontal-lg pt-4">-->
-
-<!--      <div class="list-group-item list-group-item-action list-group-item-primary">-->
-<!--        <div class="d-flex w-100 justify-content-between">-->
-<!--          <h5 class="mb-1">1. <i class="fa fa-share-alt"></i> Recomienda Alguien</h5>-->
-<!--          <small>Siguiente <i class="fa fa-arrow-alt-circle-right"></i></small>-->
-<!--        </div>-->
-<!--        <p class="mb-1">Recomienda a alguien o a ti mismo para poder Continuar con el siguinte.</p>-->
-<!--        <small>Paso 1</small>-->
-<!--      </div>-->
-
-<!--      <div class="list-group-item list-group-item-action list-group-item-light">-->
-<!--        <div class="d-flex w-100 justify-content-between">-->
-<!--          <h5 class="mb-1">2. <i class="fa fa-user-cog"></i> Registro de usuario.</h5>-->
-<!--          <small>Siguiente <i class="fa fa-arrow-alt-circle-right"></i></small>-->
-<!--        </div>-->
-<!--        <p class="mb-1">Completa Tus datos, nombre , apellido, contrasenia y asegurate que sean correctos.</p>-->
-<!--        <small>Paso 2</small>-->
-<!--      </div>-->
-
-<!--      <div class="list-group-item list-group-item-action list-group-item-light">-->
-<!--        <div class="d-flex w-100 justify-content-between">-->
-<!--          <h5 class="mb-1">3. Completado.</h5>-->
-<!--          <small class="text-muted">Completado <i class="fa fa-arrow-alt-circle-down"></i></small>-->
-<!--        </div>-->
-<!--        <p class="mb-1">Has completado todo el registro de Usuario Regular exitosamente. Bievenido .!!</p>-->
-<!--        <small class="text-muted">Paso 3</small>-->
-<!--      </div>-->
-
-<!--    </div>-->
-    <!-- End Wizard Form-->
-
     <!-- Formulario Recomienda -->
     <div class="row pt-4 pb-4 d-flex justify-content-center">
       <div class="col-sm-9">

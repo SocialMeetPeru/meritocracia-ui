@@ -158,8 +158,12 @@
 
               // Si es correcto
               if (res.data.auth == 'ok') {
+                console.log(res.data.token)
+                const token = res.data.token;
+                localStorage.setItem('access_token', token)
+                this.$store.commit('retrieveToken', token);
                 this.logged_in = 'yes';
-                this.$router.push('ranking');
+                // this.$router.push('ranking');
               }
 
               // Si no es correcto
@@ -173,9 +177,9 @@
 
 
 
-            console.log(res.data)
+            // console.log(res.data)
           });
-        }, 3000);
+        }, 1500);
       },
       UnirteOpction(option) {
         if (option == 'trueque'){
