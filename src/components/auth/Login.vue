@@ -41,11 +41,7 @@
             </button>
           </div>
           <div class="m-auto w-75">
-            <button class="btn btn-primary btn-block mb-2"
-                    data-toggle="modal"
-                    data-target="#exampleModal">
-                Register
-            </button>
+            <router-link to="/start_option" class="btn btn-primary btn-block mb-2 btn-block">Register</router-link>
           </div>
 
           <div class="dropdown-divider w-75 m-auto"></div>

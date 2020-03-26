@@ -2,14 +2,14 @@
   <div>
 
     <!-- Titulo Registro Usuario Normal -->
-    <h3>Trueque Registro</h3>
+
 
     <!-- Formulario Recomienda -->
     <div class="row pt-4 pb-4 d-flex justify-content-center">
-      <div class="col-sm-9">
-        <div class="card">
+      <div class="col-sm-8">
+        <div class="card bg-light">
           <div class="card-body">
-            <h4 class="card-title">1. Recomienda </h4>
+            <h4 class="card-title display-4">Recomienda Alguien</h4>
             <p class="card-text">
               Para poder ingresar a nuestra red de contactos necesitamos que nos refieras a por lo menos
               1 persona extraordinaria que conoces, Si tu crees que reunes las condiciones podras
@@ -20,22 +20,22 @@
             <div class="form-row d-flex flex-column flex-sm-row">
               <div class="col mb-3">
                 <label>Nombres</label>
-                <input type="text" class="form-control" placeholder="Abraham Moises">
+                <input type="text" class="form-control form-control-lg" v-model="recomendado.names" placeholder="Abraham Moises">
               </div>
               <div class="col mb-3">
                 <label>Apellidos</label>
-                <input type="text" class="form-control" placeholder="Linares Oscco">
+                <input type="text" class="form-control form-control-lg" v-model="recomendado.last_name" placeholder="Linares Oscco">
               </div>
             </div>
 
             <div class="form-row d-flex flex-column flex-sm-row">
               <div class="col mb-3">
                 <label>Email</label>
-                <input type="text" class="form-control" placeholder="elnaufrago2009@gmail.com">
+                <input type="text" class="form-control form-control-lg" v-model="recomendado.email" placeholder="elnaufrago2009@gmail.com">
               </div>
               <div class="col mb-3">
                 <label>Telefono</label>
-                <input type="text" class="form-control" placeholder="952631806">
+                <input type="text" class="form-control form-control-lg" v-model="recomendado.telefono" placeholder="952631806">
               </div>
             </div>
 
@@ -47,14 +47,14 @@
             </div>
 
             <div class="form-row d-flex flex-column flex-sm-row">
-              <div class="col-sm-8">
+              <div class="col">
                 <label>Link de Red Social del Referido:</label>
-                <input type="text" class="form-control" placeholder="https://www.facebook.com/AbrahamMoisesLinares">
+                <input type="text" class="form-control form-control-lg" v-model="recomendado.link" placeholder="https://www.facebook.com/AbrahamMoisesLinares">
               </div>
             </div>
 
-            <button class="btn btn-primary mt-4" @click="NextStep" :disabled="disabled_in">
-              <i v-if="disabled_in==false" class="fa fa-share"></i>
+            <button class="btn btn-primary btn-lg mt-4" @click="NextStep" :disabled="disabled_in">
+              <i v-if="disabled_in==false" class="fa fa-user-friends"></i>
               <i v-if="disabled_in == 'ok'" class="fa fa-check"></i>
               <span v-if="disabled_in==true" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Recomendar
@@ -62,19 +62,6 @@
 
 
 
-            <div class="alert alert-primary mt-3" role="alert" v-if="disabled_in=='ok'">
-              Muchas Gracias Recuerda que tienes que entar seguro que esa persona te
-              conoce, que se una a la red y que permanezca con ella hasta el momento que
-              hagamos los conteos de tus puntos.
-
-              <div class="mt-3 d-flex justify-content-between flex-wrap">
-                <button class="btn btn-warning mb-3 mr-2">
-                  <i class="fa fa-check-circle"></i> Seguir Recomendando</button>
-
-                <button class="btn btn-success mb-3">
-                  <i class="fa fa-check-circle"></i> Ingresar a tu Cuenta</button>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -84,6 +71,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   import Multiselect from 'vue-multiselect'
   export default {
     components: {
@@ -92,6 +80,13 @@
     data() {
       return {
         disabled_in: false,
+        recomendado: {
+          names: 'Abraham Moises',
+          last_name: 'Linares Oscco',
+          email: 'elnaufrago2009@gmail.com',
+          telefono: '952631806',
+          link: 'https://www.facebook.com/AbrahamMoisesLinares'
+        },
         value: [
           { name: 'Javascript', code: 'js' }
         ],
@@ -116,7 +111,14 @@
       },
       NextStep(){
         this.disabled_in = true;
-        setTimeout(() => { this.$router.push('regular/signup') }, 1500);
+        setTimeout(() => {
+
+          axios.post('http://34.229.211.102/src/regular/recomendado.php').then(res => {
+            console.log(res.data)
+          })
+          console.log(this.recomendado)
+          // this.$router.push('regular/signup')
+        }, 1500);
       }
     }
   }

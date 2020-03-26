@@ -5,14 +5,29 @@ import store from './store'
 import Vuelidate from 'vuelidate'
 require('bootstrap')
 import './styles/theme.scss'
+import axios from 'axios'
 // import ApiService from './services/api'
 
 Vue.config.productionTip = false
 
+function loggedIn(){
+  let token = localStorage.getItem('token')
+  axios.defaults.headers.common['Authorization'] = token
+  return axios.post(`/auth/check.php`).then(response => {
+    /*console.log(response.data)*/
+    if (token === response.data){
+      return true
+    } else {
+      return false
+    }
+  })
+}
+
 // Router Hace Match con las rutas que requieren auth o visor
 // Auth : rutas que nencesitan login
 // Visitor : visitante que necesita ver sin autenticacion
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
+  const token = await loggedIn()
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.loggedIn) {
       next({

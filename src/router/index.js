@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Logout from "../views/auth/Logout";
+import StartOption from '../views/regular-user/StartOption'
 
 Vue.use(VueRouter)
 
@@ -19,11 +21,27 @@ const routes = [
     }
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/start_option',
+    name: 'StartOption',
+    component: StartOption,
+    meta: {
+      requiresVisitor: true
+    }
+  },
+  {
     path: '/regular',
     component: () => import('@/views/regular-user/Index.vue'),
     children: [
       {
-        path: '',
+        path: 'bartering',
         name: 'bartering',
         component: () => import('@/views/regular-user/Bartering.vue')
       },
