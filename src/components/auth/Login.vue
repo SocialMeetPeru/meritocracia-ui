@@ -148,24 +148,24 @@
         this.isLoading = true;
 
         setTimeout(() => {
-        axios.post('http://34.229.211.102/src/auth/Auth.php?f=login', {login: this.login})
+        axios.post('/src/auth/Auth.php?f=login', {login: this.login})
           .then(res => {
 
 
-              // Si es correcto
-              if (res.data.auth == 'ok') {
-                console.log(res.data.token)
-                const token = res.data.token;
-                localStorage.setItem('access_token', token)
-                this.$store.commit('retrieveToken', token);
-                this.logged_in = 'yes';
-                // this.$router.push('ranking');
-              }
+            // Si es correcto
+            if (res.data.auth == 'ok') {
+              console.log(res.data.token)
+              const token = res.data.token;
+              localStorage.setItem('access_token', token)
+              this.$store.commit('retrieveToken', token);
+              this.logged_in = 'yes';
+              // this.$router.push('ranking');
+            }
 
-              // Si no es correcto
-              else if (res.data.auth == 'no'){
-                this.errors.estado = 'no';
-                this.errors.message = res.data.error;
+            // Si no es correcto
+            else if (res.data.auth == 'no'){
+              this.errors.estado = 'no';
+              this.errors.message = res.data.error;
               }
 
 
@@ -173,7 +173,7 @@
 
 
 
-            // console.log(res.data)
+            console.log(res.data)
           });
         }, 1500);
       },

@@ -10,29 +10,26 @@ import axios from 'axios'
 
 Vue.config.productionTip = false
 
-function loggedIn(){
-  let token = localStorage.getItem('token')
-  axios.defaults.headers.common['Authorization'] = token
-  return axios.post(`/auth/check.php`).then(response => {
-    /*console.log(response.data)*/
-    if (token === response.data){
-      return true
-    } else {
-      return false
-    }
-  })
-}
+// base de la url de axios
+axios.defaults.baseURL = 'http://localhost:8083';
+
+// function loggedIn(){
+//   // axios.defaults.headers.common['Authorization'] = token;
+//   return axios.post('/src/auth/Auth.php?f=check',{ token: localStorage.getItem('token')})
+//     .then(res => {
+//       return res.data;
+//   })
+// }
 
 // Router Hace Match con las rutas que requieren auth o visor
 // Auth : rutas que nencesitan login
 // Visitor : visitante que necesita ver sin autenticacion
-router.beforeEach(async(to, from, next) => {
-  const token = await loggedIn()
+router.beforeEach(async (to, from, next) => {
+  const token = await axios.post('/src/auth/Auth.php?f=check',{ token: localStorage.getItem('token')}).then(res => { return res.data });
+  console.log(token)
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.getters.loggedIn) {
-      next({
-        name: 'login',
-      })
+    if (token) {
+      next({name: 'login'})
     } else {
       next()
     }

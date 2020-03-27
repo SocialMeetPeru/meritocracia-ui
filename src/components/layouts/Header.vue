@@ -37,7 +37,7 @@
     methods:{
       openLogin(){
         this.loggedIn = this.$store.getters.loggedIn;
-        console.log(this.loggedIn);
+        // console.log(this.loggedIn);
       }
     },
     mounted() {
