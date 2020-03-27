@@ -13,37 +13,35 @@ Vue.config.productionTip = false
 // base de la url de axios
 axios.defaults.baseURL = 'http://localhost:8083';
 
-// function loggedIn(){
-//   // axios.defaults.headers.common['Authorization'] = token;
-//   return axios.post('/src/auth/Auth.php?f=check',{ token: localStorage.getItem('token')})
-//     .then(res => {
-//       return res.data;
-//   })
-// }
-
-// Router Hace Match con las rutas que requieren auth o visor
-// Auth : rutas que nencesitan login
-// Visitor : visitante que necesita ver sin autenticacion
 router.beforeEach(async (to, from, next) => {
+
+  // Lee y envia el token, y devuelve false si caduco y true si esta activo
   const token = await axios.post('/src/auth/Auth.php?f=check',{ token: localStorage.getItem('token')}).then(res => { return res.data });
-  console.log(token)
+
+
+  // Todas las rutas que requieren Auth
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (token) {
-      next({name: 'login'})
+    if (!token) {
+      // si el token esta vencido se va a login
+      next({path: '/login'})
     } else {
+      // continua normal
       next()
     }
-  } else if (to.matched.some(record => record.meta.requiresVisitor)) {
+  }
 
-    // Si no hay token
-    if (store.getters.loggedIn == false) {
-      // console.log(store.getters.loggedIn)
-      next({
-        // name: 'Login',
-      })
-    } else {
-      next('ranking')
+  else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    console.log(token)
+
+    // Si token es falso entra pq no hay session y esta bien
+    if (!token) {
+      next()
     }
+
+    else {
+      next({ path: '/ranking'})
+    }
+
   } else {
     next()
   }

@@ -156,10 +156,10 @@
             if (res.data.auth == 'ok') {
               console.log(res.data.token)
               const token = res.data.token;
-              localStorage.setItem('access_token', token)
+              localStorage.setItem('token', token)
               this.$store.commit('retrieveToken', token);
               this.logged_in = 'yes';
-              // this.$router.push('ranking');
+              this.$router.push('/ranking');
             }
 
             // Si no es correcto
