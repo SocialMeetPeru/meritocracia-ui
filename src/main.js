@@ -31,7 +31,6 @@ router.beforeEach(async (to, from, next) => {
   }
 
   else if (to.matched.some(record => record.meta.requiresVisitor)) {
-    console.log(token)
 
     // Si token es falso entra pq no hay session y esta bien
     if (!token) {

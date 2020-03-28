@@ -6,10 +6,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem('access_token') || null
+    token: localStorage.getItem('token') || null
   },
   getters: {
     loggedIn(state) {
+      // Retorna true o false, si token es diferente de null
       return state.token !== null
     }
   },
@@ -31,20 +32,20 @@ export default new Vuex.Store({
         })
           .then(response => {
             const token = response.data.token
-            localStorage.setItem('access_token', token)
+            localStorage.setItem('token', token)
             context.commit('retrieveToken', token)
             resolve(response)
             // console.log(response);
           })
           .catch(error => {
-            console.log(error)
+            // console.log(error)
             reject(error)
           })
       })
     },
     destroyToken(context) {
       if (context.getters.loggedIn) {
-        localStorage.removeItem('access_token')
+        localStorage.removeItem('token')
         context.commit('destroyToken')
       }
     }
