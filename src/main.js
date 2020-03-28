@@ -13,6 +13,8 @@ Vue.config.productionTip = false
 // base de la url de axios
 axios.defaults.baseURL = 'http://localhost:8083';
 
+axios.defaults.headers.common['Authorization'] = localStorage.getItem('token') || null ;
+
 router.beforeEach(async (to, from, next) => {
 
   // Lee y envia el token, y devuelve false si caduco y true si esta activo

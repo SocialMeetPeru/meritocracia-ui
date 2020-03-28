@@ -1,18 +1,18 @@
 <template>
   <div class="container">
-    <Login />
+<!--    <Login />-->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Login from '@/components/auth/Login.vue'
+// import Login from '@/components/auth/Login.vue'
 // import ApiService from '../services/api';
 
 export default {
   name: 'Home',
   components: {
-    Login
+    // Login
   },
   created() {
     // ApiService.get('/posts')
