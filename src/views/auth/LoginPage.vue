@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="m-auto" style="max-width:400px">
+      user: <code> meritocracia@gmail.com</code> <br>password: <code>meritocracia</code>
       <!-- Card Login -->
       <div class="card mt-3">
         <div class="card-body">

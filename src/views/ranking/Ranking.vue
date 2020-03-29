@@ -1,5 +1,6 @@
 <template>
   <div class="container-xl">
+    <button class="btn btn-primary" @click="Enviar">Enviar</button>
     <div class="row">
 
       <div class="col-sm-4 mt-5 border-right">
@@ -192,3 +193,22 @@
     </div>
   </div>
 </template>
+
+<script>
+  import axios from 'axios'
+  export default {
+    data(){
+      return{
+
+      }
+    },
+    methods: {
+      Enviar(){
+        axios.post('/src/auth/Demo.php?f=retorna').then(res => {
+          console.log(res.data)
+        })
+        // console.log('salio Enviar')
+      }
+    }
+  }
+</script>
